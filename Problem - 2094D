@@ -1,0 +1,97 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<bits/stdc++.h>
+using namespace std;
+
+
+int main()
+{
+
+    int t;
+    cin>>t;
+
+    while(t--){
+
+        string a,b;
+        cin>>a>>b;
+
+        //stack<pair<int, int>>v;
+
+       //char x=a[0];
+
+       stack<int>pre1, pre2;
+
+      // pre1.push_back(0);
+      // pre2.push_back(0);
+
+       //int i=0,j=0;
+
+       if(a[0]!=b[0]){
+           cout<<"NO"<<endl;
+       }else {
+           int count =1;
+          for(int i=1; i<a.size(); i++){
+
+              if(a[i]==a[i-1])
+                count++;
+            else{
+
+                pre1.push(count);
+                count=1;
+            }
+
+          }
+          pre1.push(count);
+
+           count =1;
+          for(int i=1; i<b.size(); i++){
+
+              if(b[i]==b[i-1])
+                count++;
+            else{
+
+                pre2.push(count);
+                count=1;
+            }
+
+          }
+          pre2.push(count);
+
+          while(!pre1.empty()){
+
+              if(pre2.top()<=pre1.top()*2 && pre2.top()>=pre1.top() ){
+
+                  pre1.pop();
+                  pre2.pop();
+              }else {break;}
+
+              if(pre2.empty())
+                break;
+          }
+
+          /*while(!pre1.empty()){
+            cout<<pre1.top()<<" " ;
+
+            pre1.pop();
+          }
+
+
+          cout<<endl;
+
+           while(!pre2.empty()){
+            cout<<pre2.top()<<" " ;
+
+            pre2.pop();
+          } */
+
+          if(pre1.empty()and  pre2.empty())
+            cout<<"YES"<<endl;
+          else
+            cout<<"NO"<<endl;
+
+       }
+
+    }
+
+    return 0;
+}
