@@ -1,0 +1,52 @@
+#include <bits/stdc++.h>
+#define ll long long int
+#define db double
+
+const ll N=1e6+10;
+using namespace std;
+
+vector<ll>v(N,0);
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+
+   // memset(dp,-1, sizeof(dp));
+
+
+    int t=1;
+    //cin >> t;
+
+
+
+    while (t--)
+    {
+
+        ll arr[3];
+
+        for(int i=0; i<3 ; i++)
+            cin>>arr[i];
+
+        sort(arr, arr+3);
+
+        ll mini = min(arr[1], arr[2]);
+
+        ll maxi = max(arr[1], arr[2] );
+
+
+        if(arr[0] == 0 and arr[1]==0)
+        {
+            cout<<0<<endl;
+            return 0;
+        }
+
+        cout<<arr[0] +min(mini , (maxi-arr[0] +   mini - arr[0] ) /3 )<<endl;
+
+        //main();
+
+    }
+
+    return 0;
+
+    }
