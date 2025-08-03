@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+#define ll long long int
+#define db double
+
+const int N=1e6+10;
+using namespace std;
+
+vector<bool>v(N,0);
+
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+
+    //memset(dp,-1, sizeof(dp));
+
+
+    int t=1;
+    cin >> t;
+
+
+
+    while (t--)
+    {
+
+       ll n, m , o;
+       cin>>n>>m>>o;
+
+       if((n+m+o)%3==0)
+       {
+           ll avg = (n+m+o)/3;
+
+           if(n>avg or m>avg)
+            cout<<"NO"<<endl;
+           else
+            cout<<"YES"<<endl;
+
+       }
+
+       else
+        cout<<"NO"<<endl;
+
+    }
+
+    return 0;
+
+    }
