@@ -1,0 +1,52 @@
+#include<bits/stdc++.h>
+#define ll long long int
+#define cinn(v) for(int i=0; i<n; i++)cin>>v[i]
+using namespace std;
+
+
+
+int main(){
+
+    int t;
+
+    cin >> t ;
+
+    while (t--){
+
+        ll n, m;
+        cin>>n>>m;
+
+        vector<ll>v(n);
+
+        cinn(v);
+
+        sort(v.rbegin(), v.rend());
+
+
+        ll ans = 0 ;
+
+
+
+        //for(auto u: b)cout<<u<< " "; cout<<endl;
+
+        int x =0;
+
+
+        for (ll i =0 ; i<n; i++){
+
+            ll w = v[i]* pow(2, x);
+
+            if(w>m)
+                ans++;
+            else
+                x++;
+        }
+
+        cout<<ans <<endl;
+
+
+
+    }
+
+    return 0;
+}
