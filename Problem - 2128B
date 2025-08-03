@@ -1,0 +1,80 @@
+#include<bits/stdc++.h>
+#define ll long long int
+#define cinn(v) for(int i=0; i<n; i++)cin>>v[i]
+using namespace std;
+
+
+int main(){
+
+    int t;
+
+    cin >> t ;
+
+    while (t--){
+
+        ll n;
+        cin>>n;
+
+        vector<ll>v(n);
+
+        cinn(v);
+
+        ll l = 0 , r = n-1;
+
+        bool flag = true;
+
+        while(l<=r){
+
+            ll left = v[l];
+            ll right = v[r];
+
+            ll maxi = max(left, right);
+            ll mini = min(left, right);
+
+            if(flag){
+                //cout<<maxi<<" ";
+
+                if(v[l]==maxi){
+                    cout<<"L";
+                    l++;
+                }
+
+                else{
+                    cout<<"R";
+                    r--;
+                }
+                   // r--;
+                flag =!flag;
+            }else
+            {
+
+                //cout<<mini<<" ";
+
+                if(v[l]==mini)
+                {
+                    cout<<"L";
+                    l++;
+                }
+
+                else
+                {
+                    cout<<"R";
+                    r--;
+                }
+                    //r--;
+                flag =!flag;
+
+
+            }
+
+
+        }
+
+        cout<<endl;
+
+
+
+    }
+
+    return 0;
+}
