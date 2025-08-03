@@ -1,0 +1,53 @@
+#include <bits/stdc++.h>
+#define ll long long int
+#define db double
+
+const ll N=1e6+10;
+using namespace std;
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+
+    int t=1;
+    cin >> t;
+
+    while (t--)
+    {
+
+        int n;
+        cin>>n;
+
+
+        vector<ll> pre;
+
+        pre.push_back(0);
+
+        for(int i=0; i<n; i++){
+
+            int a;
+            cin>>a;
+
+            pre.push_back(pre.back()+a);
+
+        }
+
+
+        ll ans = -1;
+
+        for(int i=1; i<pre.size()-1; i++){
+
+                ll gc =__gcd(pre[i], (pre.back()-pre[i]));
+
+               // cout<<gc<<" ";
+
+            ans = max(ans, gc  );
+        }
+
+        cout<<ans<<endl;
+
+    }
+
+    return 0;
+}
