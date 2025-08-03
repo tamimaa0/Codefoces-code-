@@ -1,0 +1,75 @@
+#include <bits/stdc++.h>
+#define ll long long int
+#define db double
+
+const ll N=1e6+10;
+using namespace std;
+
+int dp[N];
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+
+
+
+    int t=1;
+    cin >> t;
+
+    while (t--)
+    {
+
+      int n;
+      cin>>n;
+
+      stack<int>odd ;
+
+      queue<int>even;
+
+
+      for(int i= n; i>=1;  i--){
+        if(i&1){
+            odd.push(i);
+        }else
+
+            even.push(i);
+      }
+
+      bool flag =true;
+     // cout<<even.size()<<" "<<odd.size()<<endl;
+
+      while(!odd.empty() and !even.empty()){
+
+        if(flag){
+            cout<<even.front()<<" ";
+            even.pop();
+        }else {
+
+            cout<<odd.top()<<" ";
+            odd.pop();
+
+        }
+
+
+       flag = !flag;
+
+       //cout<<"PAri nah kissu "<<" ";
+      }
+
+      while(!even.empty()){
+        cout<<even.front()<<" ";
+            even.pop();
+      }
+
+      while(!odd.empty()){
+          cout<<odd.top()<<" ";
+            odd.pop();
+
+      }
+
+        cout<<endl;
+    }
+
+    return 0;
+}
