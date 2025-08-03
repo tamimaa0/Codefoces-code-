@@ -1,0 +1,49 @@
+#include <bits/stdc++.h>
+#define ll long long int
+#define db double
+
+const ll N=1e6+10;
+using namespace std;
+
+vector<ll>v(N,0);
+
+
+
+
+
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+
+   // memset(dp,-1, sizeof(dp));
+
+
+    int t=1;
+    cin >> t;
+
+
+
+    while (t--)
+    {
+
+        int n;
+        cin>>n;
+
+        int ans = 0;
+
+        for(int i= n , j= 1; i>=ceil(n/2.0); i--, j++){
+            ans += (i-j);
+        }
+
+        if(n%2 ==0)
+            ans+=1;
+
+        cout<<ans+1<<endl;
+
+    }
+
+    return 0;
+
+    }
