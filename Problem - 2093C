@@ -1,0 +1,59 @@
+#include <bits/stdc++.h>
+#define ll long long int
+#define db double
+
+const int N=1e6+10;
+using namespace std;
+
+vector<bool>v(N,0);
+
+bool is_prime(int n){
+
+    if (n==1)return false;
+
+    if(n==2)return true;
+
+    if(n%2==0)return false;
+
+    for(int i=3; i*i<=n; i+=2){
+        if(n%i==0)
+            return false;
+    }
+
+    return true ;
+
+}
+
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+
+    //memset(dp,-1, sizeof(dp));
+
+
+    int t=1;
+    cin >> t;
+
+
+
+    while (t--)
+    {
+
+        int n, m;
+
+        cin>>n>>m;
+
+        if((is_prime(n) and m==1 )or (n==1 and m==2))
+            cout<<"YES"<<endl;
+        else
+            cout<<"NO"<<endl;
+
+
+
+    }
+
+    return 0;
+
+    }
