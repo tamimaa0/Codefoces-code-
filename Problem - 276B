@@ -1,0 +1,63 @@
+#include <bits/stdc++.h>
+#define ll long long int
+#define db double
+
+const int N=1e6+10;
+using namespace std;
+
+vector<bool>v(N,0);
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+
+    //memset(dp,-1, sizeof(dp));
+
+
+    int t=1;
+   // cin >> t;
+
+
+
+    while (t--)
+    {
+        string s;
+        cin>>s;
+
+        vector<pair<char, int>>v(26);
+
+        char a='a';
+
+        for(int i=0; i<26; i++){
+            v[i].first=a+i;
+            v[i].second =0;
+
+        }
+
+        for(int i=0; i<26; i++){
+            for(int j=0; j<s.size(); j++){
+                if(s[j]==v[i].first)
+                    v[i].second ++;
+            }
+        }
+
+        int count =0;
+
+        for(int i=0; i<26; i++){
+            if(v[i].second &1)
+                count++;
+        }
+
+        if(count ==1)
+            cout<<"First"<<endl;
+        else if(count%2==0 and count !=0)
+            cout<<"Second"<<endl;
+        else
+            cout<<"First"<<endl;
+
+    }
+
+    return 0;
+
+    }
