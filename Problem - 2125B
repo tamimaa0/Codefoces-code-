@@ -1,0 +1,34 @@
+#include<bits/stdc++.h>
+#define ll long long int
+
+using namespace std;
+
+
+int main(){
+
+    int t;
+
+    cin >> t ;
+
+    while (t--){
+
+      ll a , b, c;
+      cin>>a>>b>>c;
+
+      //ll x = c;
+
+      ll gc = __gcd(b, a);
+
+
+
+
+      if(a/gc <= c and b/gc <=c)
+        cout<<1<<endl;
+      else if (a <= c and b<=c)
+        cout <<1<<endl;
+      else
+        cout<<2<<endl;
+
+
+    }
+}
