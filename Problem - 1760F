@@ -1,0 +1,139 @@
+#include <bits/stdc++.h>
+#define ll long long int
+#define db double
+
+const ll N=1e6+10;
+using namespace std;
+
+//vector<ll>v(N,0);
+
+ll bina(vector<ll>&a, ll day , ll coin){
+
+    ll l = 0;
+
+    ll n = a.size();
+
+    ll r = day;
+
+
+
+    ll result = 1;
+
+
+    while(l<=r){
+
+
+        ll mid = (l+r)/2;
+
+
+
+             ll num = 0;
+
+             queue<ll>v;
+
+
+
+             for(int i= 0; i<mid ; i++){
+
+                if(i< n)
+                    v.push(a[i]);
+
+                else
+                    v.push(0);
+
+             }
+
+             for(int i= 0; i< day ; i++){
+
+               /// if(i%mid < a.size())
+                //num+= a[i%mid];
+
+                //cout<< a[i] <<" ";
+
+                num += v.front();
+
+                v.push(v.front());
+                v.pop();
+
+
+
+             }
+             //cout<<endl;
+
+             //cout<<mid<<" " <<num<<endl;
+
+
+
+             if(num >= coin)
+             {
+                 l = mid + 1;
+                 result = mid;
+
+             } else
+             {
+                 r = mid -1;
+             }
+
+
+
+
+    }
+
+
+    return result-1;
+
+}
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+
+   // memset(dp,-1, sizeof(dp));
+
+
+    int t=1;
+    cin >> t;
+
+
+
+    while (t--)
+    {
+
+        ll n, coin , day;
+
+        cin>>n>> coin >>day;
+
+        vector<ll>v(n);
+
+        ll sum = 0 ;
+
+        for(int i=0 ; i<n ; i ++){
+            cin>>v[i];
+        }
+
+
+
+
+        sort(v.rbegin(), v.rend());
+
+        for(int i=0 ; i<min(day,n) ; i++)
+            sum+=v[i];
+
+
+
+        if(sum>=coin)
+            cout<<"Infinity"<<endl;
+        else if(v[0]*day < coin)
+
+            cout<<"Impossible"<<endl;
+        else
+        {
+            cout<<bina(v, day , coin)<<endl;
+        }
+
+    }
+
+    return 0;
+
+    }
