@@ -1,0 +1,52 @@
+#include<bits/stdc++.h>
+#define ll long long int
+#define cinn(v) for(int i=0; i<n; i++)cin>>v[i]
+using namespace std;
+
+
+int main(){
+
+    int t;
+
+    t =1 ;
+    cin >> t ;
+
+    while (t--){
+
+        int  k, n;
+        cin>>k>> n;
+
+        vector<int>v(n);
+
+        cinn(v);
+
+        int num = k-n +1;
+
+        int maxi = ceil(v[0]/(double)num);
+
+        bool flag = true ;
+
+        for(int i= 1; i<n; i++){
+
+            if(v[i]-v[i-1]<maxi)
+                flag = false;
+
+            maxi = v[i]-v[i-1];
+
+        }
+
+       // cout<<maxi<<endl;
+
+        if(flag)
+            cout<<"YES"<<endl;
+        else
+            cout<<"NO"<<endl;
+
+
+
+
+
+    }
+
+    return 0;
+}
