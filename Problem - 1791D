@@ -1,0 +1,82 @@
+#include<bits/stdc++.h>
+#define ll long long int
+#define cinn(v) for(int i=0; i<n; i++)cin>>v[i]
+using namespace std;
+
+int x(vector<pair<char, int>>a)
+{
+
+    int cnt =0;
+
+    for(int i=0; i<26; i++){
+        if(a[i].second >=1){
+            cnt++;
+        }
+    }
+
+    return cnt;
+
+}
+
+int main(){
+
+    int t;
+
+    t =1 ;
+    cin >> t ;
+
+    while (t--){
+
+        int n;
+        cin>>n;
+
+        vector<char>v(n);
+
+        cinn(v);
+
+        vector<pair<char , int>> a(26), b(26);
+
+        for(int i=0; i<26; i++){
+
+            a[i].first = 'a'+i;
+            b[i].first = 'a'+i;
+
+            a[i].second =0 ;
+            b[i].second = 0;
+
+
+        }
+
+        for(int i =0; i<n ; i++){
+
+            for(int j=0; j<26;j++){
+
+                if(v[i]== a[j].first)
+                    a[j].second++;
+            }
+
+        }
+
+        int ans = 0;
+
+        for(int i=0 ; i<n ; i++){
+
+            for(int j=0; j<26 ; j++){
+
+                if(v[i]== b[j].first)
+                    {
+                        b[j].second++;
+                        a[j].second--;
+                    }
+            }
+
+            ans = max(ans , x(a)+x(b));
+
+        }
+
+        cout<<ans<<endl;
+
+    }
+
+    return 0;
+}
