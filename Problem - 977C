@@ -1,0 +1,87 @@
+#include<bits/stdc++.h>
+#define ll long long int
+#define cinn(v) for(int i=0; i<n; i++)cin>>v[i]
+using namespace std;
+
+ll cnt(vector<ll>v , ll key){
+
+    ll l =0;
+    ll r = v.size()-1;
+
+    ll result = -1;
+
+    while(l<=r){
+
+     ll mid = (l+r)/2;
+
+    if(v[mid]<= key){
+
+        l = mid +1;
+        result = mid ;
+    }
+    else
+        r =mid -1;
+
+    }
+
+    return result+1 ;
+}
+
+ll bina(vector<ll>v , ll m )
+{
+    ll l =1 ;
+    ll r = 1e9;
+    ll result = -1;
+
+    while(l<=r){
+
+        ll mid = (l+r)/2;
+
+        if(cnt(v, mid)<=m){
+            l = mid+1;
+            result =mid ;
+        }
+        else
+            r = mid -1;
+
+    }
+    if(cnt(v, result) ==m)
+
+    return result;
+
+    return -1;
+}
+
+int main(){
+
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+
+    int t;
+
+    t =1 ;
+//    cin >> t ;
+
+    while (t--){
+
+        ll n , m;
+        cin>>n>>m;
+
+        vector<ll>v(n);
+
+        cinn(v);
+
+        sort(v.begin(), v.end());
+
+       // cout<<cnt(v, 6)<<endl;
+
+       // for(auto u : v)cout<<u<<" ";cout<<endl;
+
+        cout<<bina(v, m)<<endl;
+
+    }
+
+    //main();
+
+    return 0;
+}
