@@ -1,0 +1,80 @@
+#include<bits/stdc++.h>
+#define ll long long int
+#define cinn(v) for(int i=0; i<n; i++)cin>>v[i]
+using namespace std;
+
+const int N = 1e9+10;
+
+void filll(vector<pair<ll, ll >>&p){
+
+    int i =0;
+
+    while(pow(3,i)<=N){
+            ll a = pow(3,i);
+
+            ll b = pow(3,i+1) + i* pow(3, i-1);
+        p.push_back({a, b});
+
+        i++;
+    }
+
+
+}
+
+int loc(vector<pair<ll, ll>> p, int n){
+    int i =0;
+    for( ; i<p.size();  i++){
+
+        if(p[i].first==n)
+            return i;
+        if(p[i].first > n)
+            return i-1;
+    }
+
+     return i-1;
+
+}
+
+int main(){
+
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+
+    vector<pair < ll , ll>>p;
+
+    filll(p);
+
+    //for(int i=0; i<p.size() ; i++) cout<<p[i].first<<" "<<p[i].second<<endl;
+
+
+    int t;
+
+    t =1 ;
+    cin >> t ;
+
+    while (t--){
+
+        int n;
+        cin>>n;
+
+        ll ans =0 ;
+
+        while(n>0){
+
+            int i = loc(p, n);
+
+            int x = n/p[i].first ;
+
+            ans += (p[i].second*x );
+
+            n = n%p[i].first;
+
+        }
+
+        cout<<ans<<endl;;
+
+    }
+      //main();
+
+    return 0;
+}
