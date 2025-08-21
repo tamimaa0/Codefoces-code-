@@ -1,0 +1,61 @@
+#include<bits/stdc++.h>
+#define ll long long int
+#define cinn(v) for(int i=0; i<n; i++)cin>>v[i]
+using namespace std;
+
+const int N = 1e6+10;
+
+void solve (vector<char> &v, vector<char>add , vector<char>tra){
+
+    for(int i=0; i<add.size(); i++)
+    {
+        if(tra[i]=='D')
+            v.push_back(add[i]);
+        else
+            v.insert(v.begin(), add[i]);
+    }
+
+
+}
+
+int main(){
+
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+
+    int t;
+
+    t =1 ;
+    cin >> t ;
+
+    while (t--){
+
+        int n;
+        cin>>n;
+
+        vector<char>v(n);
+
+        for(int i=0; i<n; i++)
+            cin>>v[i];
+
+        int a;
+        cin>>a;
+
+        vector<char>add(a), tra(a);
+
+        for(int i=0; i<a; i++)
+            cin>>add[i];
+
+        for(int i=0; i<a; i++)
+            cin>>tra[i];
+
+        solve(v, add, tra);
+
+        for(auto u:v)
+            cout<<u;
+        cout<<endl;
+    }
+      //main();
+
+    return 0;
+}
