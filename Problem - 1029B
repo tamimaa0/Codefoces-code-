@@ -1,0 +1,67 @@
+#include<bits/stdc++.h>
+#define ll long long int
+#define cinn(v) for(int i=0; i<n; i++)cin>>v[i]
+using namespace std;
+
+const int N = 1e6+10;
+
+int dp[N];
+
+int solve(int v[], int i){
+
+    if(i== 0)
+        return dp[i] =0 ;
+
+    if(dp[i]!=-1)
+        return dp[i];
+
+
+
+
+        if(v[i-1] >= ceil((double)v[i]/2))
+           dp[i] = 1 + solve(v, i-1);
+        else
+            dp[i] =0 ;
+
+
+
+    return dp[i]  ;
+
+}
+
+
+
+int main(){
+
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+
+    int t;
+
+    t =1 ;
+    //cin >> t ;
+
+    while (t--){
+
+        memset(dp, -1, sizeof(dp));
+
+        int n;
+        cin>>n;
+
+        int arr[n];
+
+        for(int i=0; i<n; i++)
+            cin>>arr[i];
+
+        for(int i =n-1 ; i>=0; i--){
+            solve(arr, i);
+        }
+
+        cout<<*max_element(dp , dp+N)+1 <<endl;
+
+
+    }
+      //main();
+
+    return 0;
+}
