@@ -1,0 +1,52 @@
+#include<bits/stdc++.h>
+#define ll long long int
+#define cinn(v) for(int i=0; i<n; i++)cin>>v[i]
+using namespace std;
+
+const int N = 1e6+10;
+
+int dp[N];
+
+bool is_possible(int n){
+
+    if(n==0) return true ;
+    if(n<0) return false ;
+    if(n%11==0) return true;
+
+
+
+    return is_possible( n-111) ;
+
+
+}
+
+
+int main(){
+
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+
+    int t;
+
+    t =1 ;
+    cin >> t ;
+
+    while (t--){
+
+        int n;
+        cin>>n ;
+
+        string a = "111111111" ;
+
+        if(is_possible(n)){
+            cout<<"YES"<<endl ;
+        }else
+            cout<<"NO"<<endl;
+
+
+
+    }
+      //main();
+
+    return 0;
+}
