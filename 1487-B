@@ -1,0 +1,126 @@
+#include <bits/stdc++.h>
+#define ll long long int
+#define db double
+
+const int N=1e4+10;
+const ll M = 1000000007;
+using namespace std;
+
+vector<bool>prime(N , true) ;
+
+vector<ll>p;
+
+void fiill(){
+
+    p.push_back(1LL);
+
+    while(p.size()<=N){
+        p.push_back(p.back()+4LL);
+    }
+
+}
+
+
+void seive(){
+
+    prime[1] = false ;
+    prime[0] = false;
+
+
+    for (int i = 2; i*i <= N; i++) {
+        if (prime[i]) {
+
+
+            for (int j = i * i; j <= N; j += i)
+                prime[j] = false;
+        }
+    }
+
+
+
+
+}
+
+void pr_f(vector<ll>p , vector<ll>&p_f ,ll n , int i){
+
+    if(prime[n])
+    {
+        p_f.push_back(n) ;
+        return;
+    }
+
+    if(n%p[i] == 0){
+        p_f.push_back(p[i]);
+        pr_f(p,p_f, n/p[i], i);
+
+    } else
+    {
+        pr_f(p,p_f, n, i+1);
+    }
+
+}
+
+
+void solve(){
+
+   ll n , k ;
+
+   cin>>n>>k ;
+
+   if(n%2==0){
+
+        if(k%n==0){
+            cout<<n<<endl;
+        }else {
+            cout<<k%n<<endl;
+        }
+
+   } else
+   {
+
+       ll x = n/2;
+
+       ll con = ceil((double)k/x) ;
+       con--;
+        //cout<<con<<" ";
+       ll ans = 0;
+       ans = (k+con)%n;
+
+       //cout<<ans<<endl;
+
+
+       if(ans ==0)
+        ans = n;
+
+       cout<<ans<<endl;
+
+   }
+
+}
+//13:13
+
+
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+
+    //seive();
+    //fiill();
+
+
+
+    int t = 1;
+    cin >> t;
+    int i = 1;
+    while (t--)
+    {
+        //cout<<"Case "<<i<<": ";
+
+        solve();
+        i++;
+
+    }
+    return 0;
+    }
