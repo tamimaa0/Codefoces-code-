@@ -1,0 +1,130 @@
+#include <bits/stdc++.h>
+#define ll long long int
+#define db double
+
+const int N = 1e5 + 10;
+using namespace std;
+
+vector<bool> prime(N, true);
+
+void seive() {
+    prime[1] = false;
+    for (ll i = 2; i * i <= N; i++) {
+        if (prime[i]) {
+            for (ll j = i * i; j <= N; j += i)
+                prime[j] = false;
+        }
+    }
+}
+
+void pr_f(vector<ll> p, vector<ll>& p_f, ll n, ll i) {
+    if (prime[n]) {
+        p_f.push_back(n);
+        return;
+    }
+
+    if (n % p[i] == 0) {
+        p_f.push_back(p[i]);
+        pr_f(p, p_f, n / p[i], i);
+    } else {
+        pr_f(p, p_f, n, i + 1);
+    }
+}
+
+ll bina(vector<ll> v, ll key, ll left) {
+    ll l = left;
+    ll r = v.size();
+    ll result = -1;
+
+    while (l <= r) {
+        ll mid = (l + r) / 2;
+        if (v[mid] >= key) {
+            r = mid - 1;
+            result = mid;
+        } else {
+            l = mid + 1;
+        }
+    }
+
+    return result;
+}
+
+struct com {
+    bool operator()(pair<ll, ll>& a, pair<ll, ll>& b) {
+        if (a.second < b.second)
+            return false;
+        return true;
+    }
+};
+
+void solve() {
+    ll V, E;
+    cin >> V >> E;
+
+    vector<vector<pair<ll, ll>>> adj(V + 1);
+
+    for (ll i = 1; i <= E; i++) {
+        ll f, t, w;
+        cin >> f >> t >> w;
+
+        adj[f].push_back({t, w});
+        adj[t].push_back({f, w});
+    }
+
+    vector<ll> dis(V + 1, LLONG_MAX);
+    vector<ll> p(V + 1, -1);
+
+    priority_queue<pair<ll, ll>, vector<pair<ll, ll>>, com> q;
+
+    q.push({1, 0});
+
+    while (!q.empty()) {
+        ll u = q.top().first;
+        q.pop();
+
+        for (auto it : adj[u]) {
+            ll v = it.first;
+            ll d = it.second;
+
+            if (dis[v] > dis[u] + d) {
+                dis[v] = dis[u] + d;
+                q.push({v, dis[v]});
+                p[v] = u;
+            }
+        }
+    }
+
+    if (p[V] == -1) {
+        cout << -1;
+        return;
+    }
+
+    vector<ll> ans;
+
+    ll n = V;
+    ans.push_back(n);
+
+    while (n > 1) {
+        ans.push_back(p[n]);
+        n = p[n];
+    }
+    reverse(ans.begin(), ans.end());
+
+    for (auto u : ans) {
+        cout << u << " ";
+    }
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+
+    seive();
+
+    ll t = 1;
+    ///cin >> t;
+    while (t--) {
+        solve();
+    }
+    return 0;
+}
