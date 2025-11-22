@@ -1,0 +1,116 @@
+#include <bits/stdc++.h>
+#define ll long long int
+#define db double
+
+const int N=1e5+10;
+using namespace std;
+
+vector<bool>prime(N , true) ;
+
+
+void seive(){
+
+    prime[1] = false ;
+
+
+    for (int i = 2; i*i <= N; i++) {
+        if (prime[i]) {
+
+
+            for (int j = i * i; j <= N; j += i)
+                prime[j] = false;
+        }
+    }
+
+
+
+
+}
+
+void pr_f(vector<ll>p , vector<ll>&p_f ,ll n , int i){
+
+    if(prime[n])
+    {
+        p_f.push_back(n) ;
+        return;
+    }
+
+    if(n%p[i] == 0){
+        p_f.push_back(p[i]);
+        pr_f(p,p_f, n/p[i], i);
+
+    } else
+    {
+        pr_f(p,p_f, n, i+1);
+    }
+
+}
+
+void solve(){
+
+
+      ll n,m;
+       cin>>n>>m;
+
+       vector<ll>v(n), p(n+1, 0);
+
+       for(int i=0; i<n ; i++){
+        cin>>v[i];
+        p[v[i]]++;
+       }
+
+       ll mex = INT_MAX ;
+
+       for(ll i =0 ; i<=n; i++){
+
+            if(p[i]==0){
+                mex = min(mex, i);
+            }
+
+       }
+
+       //cout<<mex<<endl;
+
+       if(m==mex){
+        cout<<0<<endl;
+       } else {
+
+            ll ans = 0 ;
+
+            for(int i = 0; i<m ; i++){
+                if(p[i]==0){
+                    ans++;
+                }
+            }
+
+            //cout<<ans<<endl;
+
+            cout<<max(ans,p[m])<<endl;
+
+       }
+
+
+
+
+
+}
+
+
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+
+    seive();
+
+    int t = 1;
+    cin >> t;
+    while (t--)
+    {
+
+        solve();
+
+    }
+    return 0;
+    }
