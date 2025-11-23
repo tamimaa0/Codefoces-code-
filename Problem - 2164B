@@ -1,0 +1,146 @@
+#include <bits/stdc++.h>
+#define ll long long int
+#define db double
+
+const int N=1e4+10;
+const ll M = 1000000007;
+using namespace std;
+
+vector<bool>prime(N , true) ;
+
+vector<ll>p;
+
+void fiill(){
+
+    p.push_back(1LL);
+
+    while(p.size()<=N){
+        p.push_back(p.back()+4LL);
+    }
+
+}
+
+
+void seive(){
+
+    prime[1] = false ;
+    prime[0] = false;
+
+
+    for (int i = 2; i*i <= N; i++) {
+        if (prime[i]) {
+
+
+            for (int j = i * i; j <= N; j += i)
+                prime[j] = false;
+        }
+    }
+
+
+
+
+}
+
+void pr_f(vector<ll>p , vector<ll>&p_f ,ll n , int i){
+
+    if(prime[n])
+    {
+        p_f.push_back(n) ;
+        return;
+    }
+
+    if(n%p[i] == 0){
+        p_f.push_back(p[i]);
+        pr_f(p,p_f, n/p[i], i);
+
+    } else
+    {
+        pr_f(p,p_f, n, i+1);
+    }
+
+}
+
+struct cmp {
+    bool operator()( pair<ll,ll> &a,  pair<ll,ll> &b){
+
+        if(a.second == b.second){
+            return a.first < b.first;
+        }
+
+        return a.second < b.second;
+    }
+};
+
+
+void solve(){
+
+    ll n;
+    cin>>n;
+
+    vector<ll>ev, od , v ;
+
+    for(int i=1; i<=n; i++){
+        ll x;
+        cin>>x ;
+        v.push_back(x);
+        if(x&1){
+            od.push_back(x);
+        } else
+            ev.push_back(x);
+    }
+
+
+    if( od.size()){
+        if(od[0]==1){
+          cout<<1<<" "<<v.back()<<endl;;
+        return ;
+        }
+
+    }
+
+    if(ev.size()>=2){
+        cout<<ev[0]<<" " <<ev.back() <<endl;
+        return;
+    }
+
+    for(int i=0; i<n; i++){
+
+        for(int j = i+1 ; j<n ; j++){
+            if((v[j]%v[i]) %2 == 0){
+                cout<<v[i]<<" "<<v[j] <<endl;
+                return;
+            }
+        }
+
+    }
+
+    cout<<-1<<endl;
+
+}
+//13:13
+
+
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+
+    //seive();
+    //fiill();
+
+
+
+    int t = 1;
+    cin >> t;
+    int i = 1;
+    while (t--)
+    {
+        //cout<<"Case "<<i<<": ";
+
+        solve();
+        i++;
+
+    }
+    return 0;
+    }
