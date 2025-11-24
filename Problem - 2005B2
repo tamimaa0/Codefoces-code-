@@ -1,0 +1,146 @@
+#include <bits/stdc++.h>
+#define ll long long int
+#define db double
+
+const int N=1e4+10;
+const ll M = 1000000007;
+using namespace std;
+
+vector<bool>prime(N , true) ;
+
+vector<ll>p;
+
+void fiill(){
+
+    p.push_back(1LL);
+
+    while(p.size()<=N){
+        p.push_back(p.back()+4LL);
+    }
+
+}
+
+
+void seive(){
+
+    prime[1] = false ;
+    prime[0] = false;
+
+
+    for (int i = 2; i*i <= N; i++) {
+        if (prime[i]) {
+
+
+            for (int j = i * i; j <= N; j += i)
+                prime[j] = false;
+        }
+    }
+
+
+
+
+}
+
+void pr_f(vector<ll>p , vector<ll>&p_f ,ll n , int i){
+
+    if(prime[n])
+    {
+        p_f.push_back(n) ;
+        return;
+    }
+
+    if(n%p[i] == 0){
+        p_f.push_back(p[i]);
+        pr_f(p,p_f, n/p[i], i);
+
+    } else
+    {
+        pr_f(p,p_f, n, i+1);
+    }
+
+}
+
+struct cmp {
+    bool operator()( pair<ll,ll> &a,  pair<ll,ll> &b){
+        if(a.second and b.second){
+                if(a.first == b.first){
+                    a.second < b.second ;
+                }
+            return a.first > b.first;
+        }
+
+
+        return a.first < b.first;
+
+    }
+};
+
+
+void solve(){
+
+    ll n , m, q ;
+    cin>>n>>m>>q;
+
+    vector<ll>v(m) ;
+
+    for(int i=0; i<m ; i++)
+        cin>>v[i] ;
+
+    sort(v.begin(), v.end()) ;
+
+    while(q--){
+
+        ll p ;
+        cin>>p ;
+
+        if(p == v[0] or p == v.back()){
+            cout<<0<<endl;
+            continue ;
+        }
+
+        if(p < v[0]){
+            cout<< v[0] -1 <<endl;
+            continue ;
+        }
+
+        if(p > v.back()){
+            cout<<n - v.back() <<endl;
+            continue ;
+        }
+
+        int x = upper_bound(v.begin(), v.end() , p) - v.begin() ;
+
+        //cout<<x<<endl;
+
+        cout<<(v[x] - v[x-1]) /2 <<endl;
+
+    }
+
+}
+//13:13
+
+
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+
+    //seive();
+    //fiill();
+
+
+
+    int t = 1;
+    cin >> t;
+    int i = 1;
+    while (t--)
+    {
+        //cout<<"Case "<<i<<": ";
+
+        solve();
+        i++;
+
+    }
+    return 0;
+    }
