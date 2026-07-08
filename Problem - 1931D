@@ -1,0 +1,119 @@
+#include <bits/stdc++.h>
+#define ll  long long int
+#define db double
+#define pi 3.141592654
+#include <ext/pb_ds/assoc_container.hpp>
+const int N = 1e5+10;
+const ll rr= 1e10;
+const ll M = 1e5 ;
+
+
+
+using namespace std;
+using namespace __gnu_pbds;
+
+typedef tree<pair<ll,ll>,null_type,less<pair<ll , ll >>,rb_tree_tag,tree_order_statistics_node_update> ordered_set;
+
+
+
+void solve()
+{
+
+    ll n , x, y ;
+    cin>>n>>x>>y ;
+
+    vector<ll>v(n) , ans ;
+
+    for(auto &u : v) cin>>u ;
+
+    map<pair<ll, ll> , ll > m ;
+
+
+    for(auto u :  v){
+        ll a, b ;
+
+        a  = u%x ;
+        b  = u%y ;
+
+        m[{a, b}]++;
+
+    }
+
+
+    ll aaaaa = 0 ;
+    for (auto u : m){
+
+        //cout<<u.first.first<<" "<<u.first.second<<" "<<u.second<<endl;
+
+        ll a = u.first.first ;
+        ll b = u.first.second ;
+        ll c = u.second ;
+
+
+        if(a == 0){
+
+            aaaaa += (c*(c-1))/2 ;
+
+
+
+        } else {
+
+            ll diff = x - a ;
+
+
+
+            ll p = m[{diff , b}]  ;// cout<<diff << " " <<b<<" "<<p<<endl;
+
+             if(diff == a){
+                aaaaa += (p*(p-1))/2 ;
+                continue ;
+             }
+
+            aaaaa += (p*c) ;
+
+            m[{diff , b}]-=p ;
+            m[{a, b}] -= p ;
+
+        }
+
+
+    }
+
+
+
+
+
+    cout<<aaaaa<<endl;
+
+}
+
+
+
+
+//13:13
+
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+
+
+
+
+    int t = 1;
+    cin >> t;
+    int i = 1;
+    while (t--)
+    {
+         //cout<<"Case "<<i<<": ";
+
+        solve();
+        i++;
+
+        //main();
+
+    }
+    return 0;
+
+}
